@@ -54,21 +54,18 @@ export default class TascaController {
         res: Response,
         next: NextFunction
     ) => {
-        try {
-            if (!req.params.tascaId) {
-                throw new NotFoundError('The tasca id is not valid.');
-            }
-            const tasca: Tasca = await this.database.selectById(
-                req.params.tascaId
-            );
-            if (!tasca) {
-                res.sendFile(path.resolve(__dirname, `../images/${tasca.photo}`));
-            }
-            else{
-                res.json('No image found.');
-            }
-        } catch (error) {
-            next(error);
+        if (!req.params.tascaId) {
+            res.json('No image found.');
+        }
+
+        const tasca: Tasca = await this.database.selectById(
+            req.params.tascaId
+        );
+        if (tasca && tasca.photo) {
+            res.sendFile(path.resolve(__dirname, `../../images/${tasca.photo}`));
+        }
+        else{
+            res.json('No image found.');
         }
     };
 
@@ -82,7 +79,6 @@ export default class TascaController {
             if (req.file) {
                 photo = req.file.filename;
             }
-            console.log(photo);
 
             await addTasca(
                 req.body.name,
@@ -120,7 +116,7 @@ export default class TascaController {
 
             let photo: string = oldTasca.photo;
             if (req.file) {
-                fs.unlink(`src/images/${oldTasca.photo}`, () => {});
+                fs.unlink(`images/${oldTasca.photo}`, () => {});
                 photo = req.file.filename;
             }
 
@@ -154,7 +150,7 @@ export default class TascaController {
 
             const photo = tasca.photo;
             await removeTasca(req.params.id, this.database);
-            fs.unlink(`src/images/${photo}`, () => {
+            fs.unlink(`images/${photo}`, () => {
                 res.status(204).send();
             });
         } catch (error) {

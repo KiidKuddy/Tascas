@@ -3,7 +3,7 @@
     <div class="column">
       <div class="ui card mt-5" style="width: 100%;">
         <div class="image">
-          <img [src]="tasca.photo" />
+          <img [src]="tasca.photo | safe"/>
         </div>
         <div class="content">
           <p class="header">{{ tasca.name }}</p>

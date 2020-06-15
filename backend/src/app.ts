@@ -16,7 +16,7 @@ class App {
     private readonly tascaController: TascaController;
     private readonly fileStorage = multer.diskStorage({
         destination: (req, file, cb) => {
-            cb(null, './src/images');
+            cb(null, 'images');
         },
         filename: (req, file, cb) => {
             cb(null, v4() + ' - ' + file.originalname);

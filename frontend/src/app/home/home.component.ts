@@ -70,8 +70,10 @@ export class HomeComponent implements OnInit {
         this.submitted = false;
         this.selectedFile = undefined;
         this.createTascaForm.reset();
-        this.tascas.push(newTasca);
-        this.notiflixCreated.nativeElement.click();
+        this.tascaService.fetchTascas().subscribe(
+          (data: Tasca[]) => (this.tascas = data),
+          () => this.notiflixCreated.nativeElement.click()
+        );
       },
       (error) => {
         console.error(error);
@@ -118,11 +120,11 @@ export class HomeComponent implements OnInit {
   }
 
   sortTableByName() {
-    this.tascas.sort(function(a, b) {
-      if ( a.name < b.name ){
+    this.tascas.sort((a, b) => {
+      if (a.name < b.name) {
         return -1;
       }
-      if ( a.name > b.name ){
+      if (a.name > b.name) {
         return 1;
       }
       return 0;
@@ -130,11 +132,11 @@ export class HomeComponent implements OnInit {
   }
 
   sortTableByAddress() {
-    this.tascas.sort(function(a, b) {
-      if ( a.address < b.address ){
+    this.tascas.sort((a, b) => {
+      if (a.address < b.address) {
         return -1;
       }
-      if ( a.address > b.address ){
+      if (a.address > b.address) {
         return 1;
       }
       return 0;
@@ -142,11 +144,11 @@ export class HomeComponent implements OnInit {
   }
 
   sortTableByRating() {
-    this.tascas.sort(function(a, b) {
-      if ( a.rating < b.rating ){
+    this.tascas.sort((a, b) => {
+      if (a.rating < b.rating) {
         return -1;
       }
-      if ( a.rating > b.rating ){
+      if (a.rating > b.rating) {
         return 1;
       }
       return 0;

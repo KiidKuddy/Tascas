@@ -22,10 +22,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tasca of tascas" (click)="showTascaDetails(tasca._id)">
-        <td>{{ tasca.name }}</td>
-        <td>{{ tasca.address }}</td>
-        <td>{{ tasca.rating }}</td>
+      <tr *ngFor="let tasca of tascas">
+        <td (click)="showTascaDetails(tasca._id)">{{ tasca.name }}</td>
+        <td (click)="showTascaDetails(tasca._id)">{{ tasca.address }}</td>
+        <td (click)="showTascaDetails(tasca._id)">{{ tasca.rating }}</td>
         <td>
           <button class="ui primary button mr-4" [routerLink]="['/edit-tasca', tasca._id]">
             Edit
