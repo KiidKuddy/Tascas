@@ -1,13 +1,14 @@
-## 1º - Instalar dependências
+## 1º - Install dependencies
 
-Executar o comando `npm install` nas diretorias frontend e backend.
+Install `nodejs`.
+Run the command `npm install` in the frontend and backend directories
 
-## 2º - Correr a API
+## 2º - Starting up the API
 
-Executar o comando `npm run build` na diretoria backend.
-Executar o comando `npm start` na diretoria backend.
+Run the command `npm run build` in the backend directory.
+Run the command `npm start` in the backend directory.
 
-## 3º Correr o aplicação Angular
+## 3º String up the Angular application
 
-Executar o comando `ng serve` na diretoria frontend.
-Navegar para o endereço `http://localhost:4200`.
+Run the command `ng serve` in the frontend direcotry.
+Navigate to the address `http://localhost:4200`.
