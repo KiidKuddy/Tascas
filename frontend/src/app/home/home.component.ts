@@ -93,6 +93,7 @@ export class HomeComponent implements OnInit {
     const searchString: string = event.target.value.toLowerCase();
     if (searchString.length === 0) {
       this.tascas = this.savedTascas;
+      this.savedTascas = undefined;
       return;
     }
 
