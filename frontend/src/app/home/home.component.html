@@ -1,0 +1,80 @@
+<div class="container mt-5">
+  <div class="ui search">
+    <div class="ui icon input">
+      <input class="prompt" type="text" placeholder="Search Tasca" (keyup)="onKeyUp($event)">
+      <i class="search icon"></i>
+    </div>
+    <div class="results"></div>
+  </div>
+  <table class="ui single line table" style="border: none; border-collapse: collapse;">
+    <thead>
+      <tr id="table-head">
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Tascas!</th>
+      </tr>
+      <tr id="table-head">
+        <th (click)="sortTableByName()">Name</th>
+        <th (click)="sortTableByAddress()">Address</th>
+        <th (click)="sortTableByRating()">Rating</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tasca of tascas" (click)="showTascaDetails(tasca._id)">
+        <td>{{ tasca.name }}</td>
+        <td>{{ tasca.address }}</td>
+        <td>{{ tasca.rating }}</td>
+        <td>
+          <button class="ui primary button mr-4" [routerLink]="['/edit-tasca', tasca._id]">
+            Edit
+          </button>
+          <button class="ui red button" (click)="deleteTasca(tasca)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="form-container" class="my-5">
+    <form class="ui form" [formGroup]="createTascaForm" (ngSubmit)="onSubmit()">
+      <div class="field" [ngClass]="{ error: submitted && form.name.errors }">
+        <label>Name</label>
+        <input type="text" formControlName="name">
+      </div>
+      <div class="field" [ngClass]="{ error: submitted && form.address.errors }">
+        <label>Address</label>
+        <input type="text" formControlName="address">
+      </div>
+      <div class="field" [ngClass]="{ error: submitted && form.rating.errors }">
+        <label>Rating (1-10)</label>
+        <input type="text" formControlName="rating">
+      </div>
+      <div class="field">
+        <label>Photo</label>
+        <input type="file" formControlName="photo" (change)="onFileSelected($event)" #file>
+      </div>
+      <button class="ui primary button" type="submit">Add Tasca</button>
+      <button class="ui red button" type="button" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+
+  <div
+    #notiflixCreated
+    style="display: none;"
+    onClick="(function(){
+      Notiflix.Notify.Init({ cssAnimationStyle: 'from-right' });
+      Notiflix.Notify.Success('Tasca created successfully');
+    })();"
+  ></div>
+  <div
+    #notiflixDeleted
+    style="display: none;"
+    onClick="(function(){
+      Notiflix.Notify.Init({ cssAnimationStyle: 'from-right' });
+      Notiflix.Notify.Success('Tasca deleted successfully');
+    })();"
+  ></div>
+</div>

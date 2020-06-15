@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/Semantic-UI/semantic.min.css';
+@import './assets/bootstrap-4.5.0/css/bootstrap.min.css';
+@import './assets/notiflix/notiflix-2.1.2.min.css';
+
+#table-head > th {
+    background-color: white;
+}
+tr:hover {
+    cursor: pointer;
+    background-color: rgb(240, 235, 235);
+}
+
+#form-container {
+    margin: 0 25px;
+    padding: 30px;
+    border: 1px solid rgba(34,36,38,.15);
+    border-radius: .3rem;
+}
